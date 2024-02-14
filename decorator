@@ -1,20 +1,31 @@
 import time 
-
+# импорт модуля time
 def calculate_execution_time(func):
+# создание декоратора
     def wrapper(*args, **kwargs):
+# Внутренная функция, которая будет заменять исходную 
         start_time = time.time()
+# передача в переменную текушего времени 
         result = func(*args, **kwargs)
+# вызов исходнной функции с переданным аргументами 
         end_time = time.time()
+# засекает время после выполнения функции
         execution_time = end_time - start_time
+# Разница между временем окончания и временем начала
         print("Время выполнения", execution_time, "секунд")
+# вывод инорфмации о времени выполнения
         return result
+# возращает результат
     return wrapper
 
 @calculate_execution_time
+# Применение декоратора к функции 
 def test_function():
+# вычисление суммы чисел от 0 до 7682767
     total = 0
     for i in range(7682768):
         total += i
     return total
 
 result = test_function()
+# вызов функции тест с помощью декоратора 
